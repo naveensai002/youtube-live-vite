@@ -1,35 +1,41 @@
-import { useState } from 'react';
-import Header from './components/Header/Header';
+import React, { Suspense, useState } from 'react';
+import Header from './components/Header';
 import './index.css';
-import Body from './components/Body/Body';
+import Body from './components/Body';
+import MainContainer from './components/MainContainer';
+
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import VideoContainer from './components/VideoContainer';
+import Shimmer from './components/Shimmer';
+
+const WatchPage = React.lazy(() => import('../src/components/WatchPage'));
+
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <Body />,
+    children: [
+      {
+        path: '/',
+        element: <MainContainer />,
+      },
+      {
+        path: 'watch',
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <WatchPage />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <div className='App'>
-      <>
-        {/* <h1 className='text-3xl font-bold'> React + Vite</h1> */}
-        {/* 
-            Header
-              Hamburger button 
-              search Bar
-              voice button
-              video button
-              Notification
-              user
-
-            Body
-              Sidebar
-              MainContainer
-              Button List
-              Card
-                video
-                title
-                channel name
-                171 k views upload time
-*/}
-        <Header />
-        <Body />
-      </>
+    <div>
+      <Header />
+      <RouterProvider router={appRouter} />
     </div>
   );
 }
