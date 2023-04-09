@@ -1,35 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { VIDEO_CATEGORIES_LIST } from '../utils/constants';
+import GlidingButtons from './GlidingButtons';
 
 const ButtonList = () => {
-  const buttons = [
-    'All',
-    'Comdey',
-    'Jaat',
-    'Haryana',
-    'Gaming',
-    'Music',
-    'Live',
-    'Programming',
-    'Vlogs',
-    'Gadgets',
-    // 'Desi',
-    // 'Rajasthni Songs',
-    // 'Ragni',
-    // 'Haryanvi Dance',
-    // 'Haryanvi Music',
-    // 'Punjabi Music',
-  ];
+  const [categories, setCatgories] = useState([]);
+
+  const getCategories = async () => {
+    const resp = await fetch(VIDEO_CATEGORIES_LIST);
+    const json = await resp.json();
+    setCatgories(json.items);
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return (
-    <>
-      {buttons.map((button, index) => (
-        <button
-          className='hover:bg-yellow-500 p-3 m-3 bg-yellow-300 curser-pointer rounded-lg '
-          key={index}
-        >
-          {button}
-        </button>
-      ))}
-    </>
+    <div className='w-[85vw] flex flex-row bg-white overflow-x-scroll'>
+      {categories.map((item) => {
+        return <GlidingButtons key={item.id} name={item.snippet.title} />;
+      })}
+    </div>
   );
 };
 
