@@ -7,6 +7,7 @@ import menubar from '../assets/menu-bar.png';
 import { toggleSidebar } from '../utils/sidebarSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { YOUTUBE_SUGGESTIONS_API } from '../utils/constants';
+import { cacheResults } from '../utils/searchSlice';
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,19 +16,34 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
 
+  const cache = useSelector((store) => store.searchSlice);
+
   useEffect(() => {
-    const timer = setTimeout(() => getSearchSuggestion(), 200);
+    const timer = setTimeout(() => {
+      if (cache[searchQuery]) {
+        setSuggestions(cache[searchQuery]);
+      } else {
+        getSearchSuggestion();
+      }
+    }, 200);
+
     return () => {
       clearTimeout(timer);
     };
   }, [searchQuery]);
 
   const getSearchSuggestion = async () => {
-    dispatch(loading());
     const resp = await fetch(YOUTUBE_SUGGESTIONS_API + searchQuery);
     const json = await resp.json();
     setSuggestions(json[1]);
-    dispatch(offLoading());
+
+    //update the cache
+
+    dispatch(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
   };
 
   const toggleSidebarHandler = () => {
