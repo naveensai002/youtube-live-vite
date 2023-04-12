@@ -2,87 +2,126 @@ import React from 'react';
 
 const commentsData = [
   {
-    name: 'Kaustubh Sinha',
+    name: 'Naveen Sai',
     text: 'lorem ipsum dolor sit amet, consectetur adip',
     replies: [
       {
-        name: 'Kaustubh Sinha',
+        name: 'Naveen Sai',
         text: 'lorem ipsum dolor sit amet, consectetur adip',
         replies: [
           {
-            name: 'Kaustubh Sinha',
+            name: 'Naveen Sai',
             text: 'lorem ipsum dolor sit amet, consectetur adip',
             replies: [
               {
-                name: 'Kaustubh Sinha',
+                name: 'Naveen Sai',
+                text: 'lorem ipsum dolor sit amet, consectetur adip',
+                replies: [
+                  {
+                    name: 'Naveen Sai',
+                    text: 'lorem ipsum dolor sit amet, consectetur adip',
+                    replies: [],
+                  },
+                ],
+              },
+            ],
+            replies: [
+              {
+                name: 'Naveen Sai',
+                text: 'lorem ipsum dolor sit amet, consectetur adip',
+                replies: [
+                  {
+                    name: 'Naveen Sai',
+                    text: 'lorem ipsum dolor sit amet, consectetur adip',
+                    replies: [],
+                  },
+                ],
+              },
+            ],
+            replies: [
+              {
+                name: 'Naveen Sai',
                 text: 'lorem ipsum dolor sit amet, consectetur adip',
                 replies: [],
               },
               {
-                name: 'Kaustubh Sinha',
-                text: 'lorem ipsum dolor sit amet, consectetur adip',
-                replies: [],
-              },
-              {
-                name: 'Kaustubh Sinha',
+                name: 'Naveen Sai',
                 text: 'lorem ipsum dolor sit amet, consectetur adip',
                 replies: [],
               },
             ],
           },
           {
-            name: 'Kaustubh Sinha',
+            name: 'Naveen Sai',
             text: 'lorem ipsum dolor sit amet, consectetur adip',
             replies: [],
           },
           {
-            name: 'Kaustubh Sinha',
+            name: 'Naveen Sai',
             text: 'lorem ipsum dolor sit amet, consectetur adip',
             replies: [],
           },
           {
-            name: 'Kaustubh Sinha',
+            name: 'Naveen Sai',
             text: 'lorem ipsum dolor sit amet, consectetur adip',
             replies: [],
           },
         ],
       },
       {
-        name: 'Kaustubh Sinha',
+        name: 'Naveen Sai',
         text: 'lorem ipsum dolor sit amet, consectetur adip',
         replies: [],
       },
       {
-        name: 'Kaustubh Sinha',
+        name: 'Naveen Sai',
         text: 'lorem ipsum dolor sit amet, consectetur adip',
         replies: [],
       },
       {
-        name: 'Kaustubh Sinha',
+        name: 'Naveen Sai',
         text: 'lorem ipsum dolor sit amet, consectetur adip',
         replies: [],
       },
     ],
   },
   {
-    name: 'Kaustubh Sinha',
+    name: 'Naveen Sai',
     text: 'lorem ipsum dolor sit amet, consectetur adip',
     replies: [],
   },
   {
-    name: 'Kaustubh Sinha',
+    name: 'Naveen Sai',
     text: 'lorem ipsum dolor sit amet, consectetur adip',
-    replies: [],
+    replies: [
+      {
+        name: 'Naveen Sai',
+        text: 'lorem ipsum dolor sit amet, consectetur adip',
+        replies: [
+          {
+            name: 'Naveen Sai',
+            text: 'lorem ipsum dolor sit amet, consectetur adip',
+            replies: [],
+          },
+        ],
+      },
+    ],
   },
   {
-    name: 'Kaustubh Sinha',
+    name: 'Naveen Sai',
     text: 'lorem ipsum dolor sit amet, consectetur adip',
-    replies: [],
+    replies: [
+      {
+        name: 'Naveen Sai',
+        text: 'lorem ipsum dolor sit amet, consectetur adip',
+        replies: [],
+      },
+    ],
   },
 ];
 // const commentDATAS = [
 //   {
-//     name: 'Kaustubh Sinha',
+//     name: 'Naveen Sai',
 //     text: 'aaa',
 //     replies: [],
 //   },
@@ -93,8 +132,8 @@ const CommentList = ({ comments }) => {
     <div>
       <Comment key={index} data={comment} />
       <div className='pl-5 border border-l-black ml-5'>
-        //recursion component calling itself // at the end replie is also a
-        comment //so better to render commentlist with prop as replies
+        {/* //recursion component calling itself // at the end replie is also a
+        comment //so better to render commentlist with prop as replies */}
         <CommentList comments={comment.replies} />
       </div>
     </div>
