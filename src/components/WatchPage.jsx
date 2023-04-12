@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeMenu } from '../utils/sidebarSlice';
 import { useSearchParams } from 'react-router-dom';
+import CommentsContainer from './commentsContainer';
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -14,7 +15,7 @@ const WatchPage = () => {
   }, []);
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className='flex flex-col w-full m-2 p-2'>
       <div className='flex '>
         <div>
           <iframe
@@ -31,6 +32,9 @@ const WatchPage = () => {
         <div className='w-full pr-4'>{/* <LiveChat /> */}</div>
       </div>
       {/* <CommentsContainer /> */}
+      <div className='m-2 p-2'>
+        <CommentsContainer />
+      </div>
     </div>
   );
 };
