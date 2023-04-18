@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeMenu } from '../utils/sidebarSlice';
-import { useSearchParams } from 'react-router-dom';
-import CommentsContainer from './commentsContainer';
+import { useParams } from 'react-router-dom';
+import CommentsContainer from '../components/CommentsContainer';
 
 const WatchPage = () => {
-  const [searchParams] = useSearchParams();
+  const {id}= useParams();
 
-  console.log(searchParams.get('v'));
+  
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,7 +22,7 @@ const WatchPage = () => {
             className='pt-5 pl-3'
             width='940'
             height='560'
-            src={'https://www.youtube.com/embed/' + searchParams.get('v')}
+            src={'https://www.youtube.com/embed/' + id}
             title='RESIDENT EVIL 4 REMAKE CHAINSAW DEMO PS5 Full Walkthrough Gameplay Part 1 &amp; ENDING (RE4 REMAKE)'
             frameBorder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'

@@ -8,7 +8,7 @@ import { toggleSidebar } from '../utils/sidebarSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { YOUTUBE_SUGGESTIONS_API } from '../utils/constants';
 import { cacheResults } from '../utils/searchSlice';
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -77,21 +77,32 @@ const Navbar = () => {
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setShowSuggestions(false)}
           />
-          <button
-            className='border border-red-600 border-double rounded-r-full p-2 text-white bg-red-600'
-            type='Search'
-          >
+          <Link to={"/search?q="+searchQuery}>   <button className=" border border-gray-400 p-2 rounded-r-full " onBlur={()=>setShowSuggestion(false)}>
             Search
-          </button>
+          </button></Link> 
         </div>
 
         {showSuggestions && (
           <div className='fixed bg-white w-[30.1rem] border border-gray-600 shadow-lg rounded-lg py-2 px-5'>
             <ul>
-              {suggestions.map((s) => (
-                <li key={s} className=' hover:bg-gray-200'>
-                  {s}
-                </li>
+              {suggestions.map((s, index) => (
+                <Link
+                  to={"/search?q="+s}
+                  key={index}
+                  onClick={() => {
+                    setSearchQuery(s);
+                    setShowSuggestions(false);
+                    setSuggestions(null);
+                  }}
+                >
+                
+                  <li
+                   
+                    className="px-2 py-2 hover:bg-gray-100"
+                  >
+                    &#128269; {s}
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>
